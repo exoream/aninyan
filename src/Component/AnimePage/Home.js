@@ -26,12 +26,12 @@ const Home = () => {
                     axios.get('/anime/finished?order_by=updated&page=1')
                 ]);
 
-                setOngoingData(ongoingRes.data.ongoingAnime);
-                setPopularData(popularRes.data.ongoingAnime);
-                setMovieData(movieRes.data.movieAnime);
-                setFinishedData(finishedRes.data.finishedAnime);
+                setOngoingData(ongoingRes.data.ongoingAnime || []);
+                setPopularData(popularRes.data.ongoingAnime || []);
+                setMovieData(movieRes.data.movieAnime || []);
+                setFinishedData(finishedRes.data.finishedAnime || []);
 
-                const topThreeData = popularRes.data.ongoingAnime.slice(0, 3);
+                const topThreeData = (popularRes.data.ongoingAnime || []).slice(0, 3);
                 const requests = topThreeData.map((anime) => {
                     const { animeCode, animeId } = anime;
                     return axios.get(`/anime/${animeCode}/${animeId}`)

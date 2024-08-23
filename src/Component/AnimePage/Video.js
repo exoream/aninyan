@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from '../../Utils/Constanta';
 
 const Video = () => {
     const { animeCode, animeId, episodeNumber } = useParams();
@@ -11,7 +12,7 @@ const Video = () => {
     const [videoList, setVideoList] = useState([]);
 
     useEffect(() => {
-        axios.get(`/anime/${animeCode}/${animeId}/${episodeNumber}`)
+        axios.get(`${baseUrl}/anime/${animeCode}/${animeId}/${episodeNumber}`)
             .then(res => {
                 setEpisode(res.data);
                 setVideoList(res.data.videoList);

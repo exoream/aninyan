@@ -4,13 +4,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import '../../App.css';
+import { baseUrl } from '../../Utils/Constanta';
 
 const Detail = () => {
     const { animeCode, animeId } = useParams();
     const [anime, setAnime] = useState(null);
 
     useEffect(() => {
-        axios.get(`/anime/${animeCode}/${animeId}`)
+        axios.get(`${baseUrl}/anime/${animeCode}/${animeId}`)
             .then((res) => {
                 setAnime(res.data.animeDetails);
             })

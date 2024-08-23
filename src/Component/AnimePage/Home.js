@@ -5,6 +5,7 @@ import Slider from './Slider';
 import catimg2 from './Image/cat2.png';
 import Paw from './Image/paw.png';
 import Loading from './Loading';
+import { baseUrl } from '../../Utils/Constanta';
 
 const Home = () => {
     const [ongoingData, setOngoingData] = useState([]);
@@ -20,10 +21,10 @@ const Home = () => {
             setLoading(true);
             try {
                 const [ongoingRes, popularRes, movieRes, finishedRes] = await Promise.all([
-                    axios.get('https://anime.exoream.my.id/anime/ongoing?order_by=updated&page=1'),
-                    axios.get('https://anime.exoream.my.id/anime/ongoing?order_by=popular&page=1'),
-                    axios.get('https://anime.exoream.my.id/anime/movie?order_by=updated&page=1'),
-                    axios.get('https://anime.exoream.my.id/anime/finished?order_by=updated&page=1')
+                    axios.get(`${baseUrl}/anime/ongoing?order_by=updated&page=1`),
+                    axios.get(`${baseUrl}/anime/ongoing?order_by=popular&page=1`),
+                    axios.get(`${baseUrl}/anime/movie?order_by=updated&page=1`),
+                    axios.get(`${baseUrl}/anime/finished?order_by=updated&page=1`)
                 ]);
 
                 setOngoingData(ongoingRes.data.ongoingAnime || []);

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import catimg2 from './Image/cat2.png';
 import Paw from './Image/paw.png';
 import Loading from './Loading';
+import { baseUrl } from '../../Utils/Constanta';
 
 const Ongoing = () => {
     const [ongoingData, setOngoingData] = useState([]);
@@ -13,7 +14,7 @@ const Ongoing = () => {
     const [hasPrevPage, setHasPrevPage] = useState(false);
 
     useEffect(() => {
-        axios.get(`/anime/ongoing?order_by=latest&page=${currentPage}`)
+        axios.get(`${baseUrl}/anime/ongoing?order_by=latest&page=${currentPage}`)
             .then((res) => {
                 setOngoingData(res.data.ongoingAnime);
                 setHasNextPage(res.data.nextPage);

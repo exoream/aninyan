@@ -131,7 +131,7 @@ const Home = () => {
         <div className='bg-gray-100 dark:bg-black'>
             <div className='relative overflow-hidden'>
                 <Slider
-                    data={popularData.slice(0, 3)}
+                    data={popularData.slice(0, 3)} // Menambahkan pengecekan
                     itemsPerPage={1}
                     renderItem={renderPopularItem}
                 />
@@ -149,7 +149,7 @@ const Home = () => {
                     </div>
 
                     <Slider
-                        data={ongoingData}
+                        data={ongoingData} // Menambahkan pengecekan
                         itemsPerPage={5}
                         renderItem={renderOngoingItem}
                         showSeeMore={true}
@@ -162,54 +162,31 @@ const Home = () => {
                         <div className='flex flex-row items-center justify-between gap-10'>
                             <h3 className='font-black dark:text-white text-2xl w-1/2'>Finished Anime</h3>
                             <hr className='w-full h-1 bg-black dark:bg-blue-300 rounded-lg' />
-                            <button className='outline outline-2 outline-blue-300 text-white px-200 text-sm font-semibold w-48 py-2 rounded-lg shadow-md'>View More</button>
                         </div>
-                        <span className='text-white'></span>
                     </div>
+
                     <Slider
-                        data={finishedData}
+                        data={finishedData} // Menambahkan pengecekan
                         itemsPerPage={4}
                         renderItem={renderFinishedItem}
-                        showSeeMore={true}
                     />
                 </div>
 
                 <div className='w-full mb-16'>
                     <div className='mb-4 mx-4'>
-                        <div className='flex flex-row items-center justify-center gap-5'>
-                            <h3 className='font-black dark:text-white text-2xl w-1/2'>Movies Anime</h3>
+                        <div className='flex flex-row items-center justify-between gap-10'>
+                            <h3 className='font-black dark:text-white text-2xl w-1/2'>Movie Anime</h3>
                             <hr className='w-full h-1 bg-black dark:bg-blue-300 rounded-lg' />
                         </div>
-                        <span className='text-white'></span>
                     </div>
-                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 mb-16'>
-                        {movieData.slice(0, 7).map((res) => (
-                            <Link to={`/anime/${res.animeCode}/${res.animeId}`} key={res.animeId}>
-                                <div className='w-full bg-white shadow relative overflow-hidden rounded-lg hover:transform duration-300 hover:-translate-y-2'>
-                                    <img className='h-64 w-full rounded-lg object-cover' src={res.image} alt={res.title} />
-                                    <h3 className='absolute bottom-0 left-0 px-2 py-2 text-md font-semibold text-white'>{truncateText(res.title, 20)}</h3>
-                                    <div className='absolute top-0 left-0 px-2 py-2'>
-                                        <span className='text-xs font-semibold bg-blue-100 rounded-sm px-2'>{res.score}</span>
-                                        <span className='text-xs font-semibold bg-blue-300 rounded-sm px-2 mx-2'>{res.type}</span>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
-                        {movieData.length > 7 && (
-                            <div className='flex flex-col bg-blue-100 rounded-md items-center justify-center'>
-                                <img className='h-16 w-16' src={Paw} alt='Paw icon' />
-                                <span className='font-semibold'>See More</span>
-                            </div>
-                        )}
-                    </div>
+
+                    <Slider
+                        data={movieData} // Menambahkan pengecekan
+                        itemsPerPage={5}
+                        renderItem={renderOngoingItem}
+                    />
                 </div>
             </div>
-
-            <img
-                className='lg:fixed lg:block hidden bottom-0 right-0 mb-4 mr-4 -mb-10 -mr-10 h-56 w-56 rounded-full object-cover hover:transform duration-300 hover:-translate-y-2'
-                src={catimg2}
-                alt='Cat'
-            />
         </div>
     );
 };
